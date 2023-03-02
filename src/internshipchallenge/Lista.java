@@ -13,11 +13,10 @@ import java.util.Random;
 /**
  *
  * @author Abdeel
- * //02-03-23
+ *         //02-03-23
  */
 public class Lista {
 
-    
     Random rand = new Random();
     public double pick; // variable de listado
     private List<Double> listaNums = new ArrayList<>(); // numeros random
@@ -44,30 +43,20 @@ public class Lista {
 
     public void reordenarListaSort(int opt) {
 
-        if (opt == 1) {
-            long start = System.currentTimeMillis();
-            lista2.clear();// limpiar lista en caso de ejecutar la funcion 2 veces
-            lista2.addAll(listaNums); // copiar lista original
-            Collections.sort(lista2); // ordenar lista copiada
-            long end = System.currentTimeMillis();      
-            System.out.println("Tiempo de ejecución: "+ (end-start)+" ms.");
+        lista2.clear();// limpiar lista en caso de ejecutar la funcion 2 veces
+        lista2.addAll(listaNums); // copiar lista original
 
-        } else if (opt == 2) {
+        if (opt == 1) { // collection sort
             long start = System.currentTimeMillis();
-            lista2.clear();// limpiar lista en caso de ejecutar la funcion 2 veces
-            lista2.addAll(listaNums); // copiar lista original
-            int n = lista2.size();
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n - i - 1; j++) {
-                    if (lista2.get(j) > lista2.get(j + 1)) {
-                        double temp = lista2.get(j);
-                        lista2.set(j, lista2.get(j + 1));
-                        lista2.set((j + 1), temp);
-                    }
-                }
-            }
-            long end = System.currentTimeMillis();      
-            System.out.println("Tiempo de ejecución: "+ (end-start)+" ms.");
+            Collections.sort(lista2); // ordenar lista copiada
+            long end = System.currentTimeMillis();
+            System.out.println("Tiempo de ejecución: " + (end - start) + " ms.");
+
+        } else if (opt == 2) { // bubble sort
+            long start = System.currentTimeMillis();
+            bubbleSort(lista2);
+            long end = System.currentTimeMillis();
+            System.out.println("Tiempo de ejecución: " + (end - start) + " ms.");
 
         } else if (opt == 3) {
             System.out.println("Parallalel Sort");
@@ -75,11 +64,13 @@ public class Lista {
         } else if (opt == 4) {
             System.out.println("heap sort");
             System.out.println("wip");
-        } else if (opt == 5) {
+        } else if (opt == 5) { // quick sort
 
-            ///////////////
-            System.out.println("quicksort");
-            System.out.println("wip");
+            long start = System.currentTimeMillis();
+            quickSort(lista2, 0, lista2.size() - 1);
+            long end = System.currentTimeMillis();
+            System.out.println("Tiempo de ejecución: " + (end - start) + " ms.");
+
         } else {
             System.out.println("Elija una opción válida.");
         }
@@ -111,6 +102,43 @@ public class Lista {
             return index;
         } catch (Exception e) {
             return -1;
+        }
+    }
+
+    private void bubbleSort(List<Double> list){
+        int n = list.size();
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (list.get(j) > list.get(j + 1)) {
+                    double temp = list.get(j);
+                    list.set(j, list.get(j + 1));
+                    list.set((j + 1), temp);
+                }
+            }
+        }
+
+    }
+
+    private void quickSort(List<Double> list, int from, int to) {
+        if (from < to) {
+            int pivot = from;
+            int left = from + 1;
+            int right = to;
+            double pivotValue = list.get(pivot);
+            while (left <= right) {
+                while (left <= to && pivotValue >= list.get(left)) {
+                    left++;
+                }
+                while (right > from && pivotValue < list.get(right)) {
+                    right--;
+                }
+                if (left < right) {
+                    Collections.swap(list, left, right);
+                }
+            }
+            Collections.swap(list, pivot, left - 1);
+            quickSort(list, from, right - 1); 
+            quickSort(list, right + 1, to);  
         }
     }
 
