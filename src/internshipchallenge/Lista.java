@@ -16,8 +16,8 @@ import java.util.Random;
  */
 public class Lista {
 
-    private List<Double> listaNums;         /// numeros random
-//    private List<Double> listaNumsOrd; ///numeros ordenados
+    private List<Double> listaNums; /// numeros random
+    // private List<Double> listaNumsOrd; ///numeros ordenados
     Random rand = new Random();
     public double pick; // variable de listado
     private List<Double> lista2; // lista de los reordenados
@@ -33,10 +33,10 @@ public class Lista {
     }
 
     public void generarNúmeros(int largo) {
-        lista2.clear();//limpiar lista copiada en caso de existir previamente
+        lista2.clear();// limpiar lista copiada en caso de existir previamente
         for (int tmp = 0; tmp < largo; tmp++) {
             pick = -300 + (300 + 300) * rand.nextDouble(); // elige número decimal al azar entre -300 y 300
-            pick = Math.round(pick * 100.0) / 100.0; //reduce decimales
+            pick = Math.round(pick * 100.0) / 100.0; // reduce decimales
             listaNums.add(pick);
         }
     }
@@ -50,24 +50,35 @@ public class Lista {
     public void reordenarListaSort(int opt) {
 
         if (opt == 1) {
-            
+
             lista2.clear();// limpiar lista en caso de ejecutar la funcion 2 veces
-            lista2.addAll(listaNums); //copiar lista original
-            Collections.sort(lista2); //ordenar lista copiada
+            lista2.addAll(listaNums); // copiar lista original
+            Collections.sort(lista2); // ordenar lista copiada
 
         } else if (opt == 2) {
-            System.out.println("quicksort");
-            System.out.println("wip");
+            lista2.clear();// limpiar lista en caso de ejecutar la funcion 2 veces
+            lista2.addAll(listaNums); // copiar lista original
+            int n = lista2.size();
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n - i - 1; j++) {
+                    if (lista2.get(j) > lista2.get(j + 1)) {
+                        double temp = lista2.get(j);
+                        lista2.set(j, lista2.get(j + 1));
+                        lista2.set((j + 1), temp);
+                    }
+                }
+            }
+
         } else if (opt == 3) {
             System.out.println("wip");
         } else if (opt == 4) {
             System.out.println("heap sort");
             System.out.println("wip");
         } else if (opt == 5) {
-            //////////
-            System.out.println("wip");
 
             ///////////////
+            System.out.println("quicksort");
+            System.out.println("wip");
         } else {
             System.out.println("Elija una opción válida.");
         }
@@ -75,14 +86,15 @@ public class Lista {
     }
 
     public void mostrarListaReordenada() {
-        if (lista2.size()>0){
-        try {
-            for (Double tmp : lista2) {
-                System.out.println(tmp.toString());
+        if (lista2.size() > 0) {
+            try {
+                for (Double tmp : lista2) {
+                    System.out.println(tmp.toString());
+                }
+            } catch (Exception e) {
+                System.out.println("\nAún no ha reordenado la lista.");
             }
-        } catch (Exception e) {
-            System.out.println("\nAún no ha reordenado la lista.");
-        }}else{
+        } else {
             System.out.println("\nAún no ha reordenado la lista.");
         }
     }
@@ -91,7 +103,6 @@ public class Lista {
         return lista2;
 
     }
-
 
     public int buscarNúmero(Double dbl) {
         try {
