@@ -99,7 +99,7 @@ public class InternshipChallenge {
 
                                 switch (opt) {
                                     case 1:
-                                        System.out.println("\nOrdenamiento Collections.sort");
+                                        System.out.println("\nOrdenamiento Collections Sort");
                                         lista1.reordenarListaSort(opt);
                                         break;
                                     case 2:

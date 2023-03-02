@@ -13,23 +13,18 @@ import java.util.Random;
 /**
  *
  * @author Abdeel
+ * //02-03-23
  */
 public class Lista {
 
-    private List<Double> listaNums; /// numeros random
-    // private List<Double> listaNumsOrd; ///numeros ordenados
+    
     Random rand = new Random();
     public double pick; // variable de listado
-    private List<Double> lista2; // lista de los reordenados
-
-    public Lista() {
-        listaNums = new ArrayList<>();
-        lista2 = new ArrayList<>();
-    }
+    private List<Double> listaNums = new ArrayList<>(); // numeros random
+    private List<Double> lista2 = new ArrayList<>(); // lista de los reordenados
 
     public List<Double> getListaNums() {
         return listaNums;
-
     }
 
     public void generarNúmeros(int largo) {
@@ -50,12 +45,15 @@ public class Lista {
     public void reordenarListaSort(int opt) {
 
         if (opt == 1) {
-
+            long start = System.currentTimeMillis();
             lista2.clear();// limpiar lista en caso de ejecutar la funcion 2 veces
             lista2.addAll(listaNums); // copiar lista original
             Collections.sort(lista2); // ordenar lista copiada
+            long end = System.currentTimeMillis();      
+            System.out.println("Tiempo de ejecución: "+ (end-start)+" ms.");
 
         } else if (opt == 2) {
+            long start = System.currentTimeMillis();
             lista2.clear();// limpiar lista en caso de ejecutar la funcion 2 veces
             lista2.addAll(listaNums); // copiar lista original
             int n = lista2.size();
@@ -68,6 +66,8 @@ public class Lista {
                     }
                 }
             }
+            long end = System.currentTimeMillis();      
+            System.out.println("Tiempo de ejecución: "+ (end-start)+" ms.");
 
         } else if (opt == 3) {
             System.out.println("Parallalel Sort");
@@ -102,7 +102,6 @@ public class Lista {
 
     public List<Double> getListaReord() {
         return lista2;
-
     }
 
     public int buscarNúmero(Double dbl) {
