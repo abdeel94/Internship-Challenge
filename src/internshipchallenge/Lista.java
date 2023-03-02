@@ -58,13 +58,14 @@ public class Lista {
             long end = System.currentTimeMillis();
             System.out.println("Tiempo de ejecución: " + (end - start) + " ms.");
 
-        } else if (opt == 3) {
-            System.out.println("Parallalel Sort");
-            System.out.println("wip");
-        } else if (opt == 4) {
-            System.out.println("heap sort");
-            System.out.println("wip");
-        } else if (opt == 5) { // quick sort
+        } else if (opt == 3) { //heap sort
+
+            long start = System.currentTimeMillis();
+            heapSort(lista2);
+            long end = System.currentTimeMillis();
+            System.out.println("Tiempo de ejecución: " + (end - start) + " ms.");
+
+        } else if (opt == 4) { // quick sort
 
             long start = System.currentTimeMillis();
             quickSort(lista2, 0, lista2.size() - 1);
@@ -142,4 +143,47 @@ public class Lista {
         }
     }
 
+    private void heapSort(List<Double> list)
+    {
+        int n = list.size();
+  
+        for (int i = n / 2 - 1; i >= 0; i--)
+            heapify(list, n, i);
+  
+
+        for (int i = n - 1; i >= 0; i--) {
+
+            double temp = list.get(0);
+            list.set(0, list.get(i));
+            list.set(i,temp);
+  
+
+            heapify(list, i, 0);
+        }
+    }
+  
+
+    private void heapify(List<Double> list, int n, int i)
+    {
+        int largest = i; 
+        int l = 2 * i + 1;
+        int r = 2 * i + 2;
+  
+ 
+        if (l < n && list.get(l) > list.get(largest))
+            largest = l;
+  
+  
+        if (r < n && list.get(r) > list.get(largest))
+            largest = r;
+  
+  
+        if (largest != i) {
+            double swap = list.get(i);
+            list.set(i, list.get(largest));
+            list.set(largest, swap);
+  
+            heapify(list, n, largest);
+        }
+    }
 }

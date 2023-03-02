@@ -91,32 +91,30 @@ public class InternshipChallenge {
                                 System.out.println("\nElija el tipo de reordenamiento: ");
                                 System.out.println("1- Collections Sort");
                                 System.out.println("2- Bubble Sort");
-                                System.out.println("3- Parallalel Sort");
-                                System.out.println("4- Heap Sort");
-                                System.out.println("5- Quick Sort");
+                                System.out.println("3- Heap Sort");
+                                System.out.println("4- Quick Sort");
                                 System.out.print("\nIngrese su opción: ");
                                 opt = scan.nextInt();
 
                                 switch (opt) {
                                     case 1:
-                                        System.out.println("\nOrdenamiento Collections Sort");
+                                        System.out.println("\nCollections Sort ejecutado.");
                                         lista1.reordenarListaSort(opt);
                                         break;
                                     case 2:
                                         lista1.reordenarListaSort(opt);
-                                        System.out.println("\nBubble Sort");
+                                        System.out.println("\nBubble Sort ejecutado.");
                                         break;
                                     case 3:
                                         lista1.reordenarListaSort(opt);
+                                        System.out.println("\nHeap Sort ejecutado.");
                                         break;
                                     case 4:
                                         lista1.reordenarListaSort(opt);
-                                        break;
-                                    case 5:
-                                        lista1.reordenarListaSort(opt);
+                                        System.out.println("\nQuick Sort ejecutado.");
                                         break;
                                     default:
-                                        System.out.println("\nElija opciones entre 1 y 5.");
+                                        System.out.println("\nElija opciones entre 1 y 4.");
                                         break;
                                 }
 
