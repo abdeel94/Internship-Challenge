@@ -70,6 +70,7 @@ public class Lista {
             }
 
         } else if (opt == 3) {
+            System.out.println("Parallalel Sort");
             System.out.println("wip");
         } else if (opt == 4) {
             System.out.println("heap sort");

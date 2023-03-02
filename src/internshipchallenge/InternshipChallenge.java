@@ -29,8 +29,8 @@ public class InternshipChallenge {
             Lista lista1 = new Lista();
 
             ///variables str para opciones
-            String opcion0 = "\n0 - Opciones menú";
-            String opcion1 = "1 - Genenera nueva lista";
+            String opcion0 = "0 - Opciones menú";
+            String opcion1 = "1 - Generar nueva lista";
             String opcion2 = "2 - Leer lista generada";
             String opcion3 = "3 - Ordenar lista";
             String opcion4 = "4 - Leer lista ordenada";
@@ -38,8 +38,8 @@ public class InternshipChallenge {
             String opcion6 = "6 - Salir";
 
             ///print menú inicial
-            System.out.println("\n--- Internship Challenge ---\n");
-            System.out.println("\n----------------------------");
+            System.out.println("\n--- Internship Challenge ---");
+            System.out.println("----------------------------");
             System.out.println(opcion0);
             System.out.println(opcion1);
             System.out.println(opcion2);
@@ -47,6 +47,7 @@ public class InternshipChallenge {
             System.out.println(opcion4);
             System.out.println(opcion5);
             System.out.println(opcion6);
+            System.out.println("----------------------------");
 
             while (!salir) {
 
@@ -77,7 +78,7 @@ public class InternshipChallenge {
                             break;
                         case 2:
                             if (lista1.getListaNums().size() > 0) {
-                                System.out.println("Lista: ");
+                                System.out.println("\nLista: ");
                                 lista1.mostrarLista();
                             } else {
                                 System.out.println("\nNinguna lista no ha sido creada.");
@@ -90,19 +91,20 @@ public class InternshipChallenge {
                                 System.out.println("\nElija el tipo de reordenamiento: ");
                                 System.out.println("1- Collections Sort");
                                 System.out.println("2- Bubble Sort");
-                                System.out.println("3- Java Quick Sort");
-                                System.out.println("4- Java Heap Sort");
-                                System.out.println("5- Parallel Sort");
+                                System.out.println("3- Parallalel Sort");
+                                System.out.println("4- Heap Sort");
+                                System.out.println("5- Quick Sort");
                                 System.out.print("\nIngrese su opción: ");
                                 opt = scan.nextInt();
 
                                 switch (opt) {
                                     case 1:
-                                        System.out.println("\nOrdenamiento Java Sort");
+                                        System.out.println("\nOrdenamiento Collections.sort");
                                         lista1.reordenarListaSort(opt);
                                         break;
                                     case 2:
                                         lista1.reordenarListaSort(opt);
+                                        System.out.println("\nBubble Sort");
                                         break;
                                     case 3:
                                         lista1.reordenarListaSort(opt);
@@ -114,7 +116,7 @@ public class InternshipChallenge {
                                         lista1.reordenarListaSort(opt);
                                         break;
                                     default:
-                                        System.out.println("Elija opciones entre 1 y 5.");
+                                        System.out.println("\nElija opciones entre 1 y 5.");
                                         break;
                                 }
 
@@ -138,12 +140,12 @@ public class InternshipChallenge {
                             System.out.print("\nIngresar número para buscar en lista ordenada: ");
                             ind = scan.nextDouble();
                             if (lista1.buscarNúmero(ind) > 0) {
-                                System.out.println("El número " + ind + " está en la posición " + lista1.buscarNúmero(ind));
+                                System.out.println("\nEl número " + ind + " está en la posición " + lista1.buscarNúmero(ind));
                             } else if(lista1.buscarNúmero(ind) == 0){
                                 
                                 System.out.println("\nEl número no existe en la lista.");
                             }else{
-                                System.out.println("La lista no existe o aún no la ha reordenado.");
+                                System.out.println("\nLa lista no existe o aún no la ha reordenado.");
                             }
                             break;
                         case 6:
@@ -151,7 +153,7 @@ public class InternshipChallenge {
                             salir = true;
                             break;
                         default:
-                            System.out.println("Elija opciones entre 1 y 6.");
+                            System.out.println("\nElija opciones entre 1 y 6.");
                     }
 
                 } catch (InputMismatchException e) {
