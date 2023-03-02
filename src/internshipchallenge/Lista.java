@@ -6,8 +6,7 @@
 package internshipchallenge;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-// import java.util.Collections;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -21,11 +20,11 @@ public class Lista {
 //    private List<Double> listaNumsOrd; ///numeros ordenados
     Random rand = new Random();
     public double pick; // variable de listado
-    public Object[] doubles; // array para ordenar los datos
-    private List<Object> lista2; // lista de los reordenados
+    private List<Double> lista2; // lista de los reordenados
 
     public Lista() {
         listaNums = new ArrayList<>();
+        lista2 = new ArrayList<>();
     }
 
     public List<Double> getListaNums() {
@@ -34,6 +33,7 @@ public class Lista {
     }
 
     public void generarNúmeros(int largo) {
+        lista2.clear();//limpiar lista copiada en caso de existir previamente
         for (int tmp = 0; tmp < largo; tmp++) {
             pick = -300 + (300 + 300) * rand.nextDouble(); // elige número decimal al azar entre -300 y 300
             pick = Math.round(pick * 100.0) / 100.0; //reduce decimales
@@ -48,23 +48,26 @@ public class Lista {
     }
 
     public void reordenarListaSort(int opt) {
-        doubles = listaNums.toArray();
 
         if (opt == 1) {
-            Arrays.sort(doubles);
-            lista2 = Arrays.asList(doubles);
+            
+            lista2.clear();// limpiar lista en caso de ejecutar la funcion 2 veces
+            lista2.addAll(listaNums); //copiar lista original
+            Collections.sort(lista2); //ordenar lista copiada
+
         } else if (opt == 2) {
             System.out.println("quicksort");
+            System.out.println("wip");
         } else if (opt == 3) {
-//            Arrays.parallelSort(doubles);
-            lista2 = Arrays.asList(doubles);
+            System.out.println("wip");
         } else if (opt == 4) {
             System.out.println("heap sort");
+            System.out.println("wip");
         } else if (opt == 5) {
             //////////
-            
-            ///////////////
+            System.out.println("wip");
 
+            ///////////////
         } else {
             System.out.println("Elija una opción válida.");
         }
@@ -72,24 +75,23 @@ public class Lista {
     }
 
     public void mostrarListaReordenada() {
+        if (lista2.size()>0){
         try {
-            for (Object tmp : lista2) {
+            for (Double tmp : lista2) {
                 System.out.println(tmp.toString());
             }
         } catch (Exception e) {
             System.out.println("\nAún no ha reordenado la lista.");
+        }}else{
+            System.out.println("\nAún no ha reordenado la lista.");
         }
     }
 
-    public List<Object> getListaReord() {
+    public List<Double> getListaReord() {
         return lista2;
 
     }
 
-    public Object[] getArray() {
-        return doubles;
-
-    }
 
     public int buscarNúmero(Double dbl) {
         try {
